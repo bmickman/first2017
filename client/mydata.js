@@ -1,0 +1,119 @@
+
+$(function () {
+
+    Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+        return {
+            radialGradient: {
+                cx: 0.5,
+                cy: 0.3,
+                r: 0.7
+            },
+            stops: [
+                [0, color],
+                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+            ]
+        };
+    });
+
+    Highcharts.chart('container', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Time Spent Abroad'
+        },
+        tooltip: {
+            pointFormat: '{series.country}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.country}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    },
+                    connectorColor: 'silver'
+                }
+            }
+        },
+        series: [{
+            name: 'locations',
+            data: [
+  {
+    "country": "Finland",
+    "y": 13.64
+  },
+  {
+    "country": "slovenia",
+    "y": 4.55
+  },
+  {
+    "country": "Germany",
+    "y": 15.91
+  },
+  {
+    "country": "Sweden",
+    "y": 9.09
+  },
+  {
+    "country": "Spain",
+    "y": 6.82
+  },
+  {
+    "country": "UK",
+    "y": 2.27
+  },
+  {
+    "country": "Denmark",
+    "y": 6.82
+  },
+  {
+    "country": "Netherlands",
+    "y": 4.55
+  },
+  {
+    "country": "Belgium",
+    "y": 2.27
+  },
+  {
+    "country": "Czech Republic",
+    "y": 11.36
+  },
+  {
+    "country": "Austria",
+    "y": 2.27
+  },
+  {
+    "country": "Hungary",
+    "y": 2.27
+  },
+  {
+    "country": "France",
+    "y": 4.55
+  },
+    {
+    "country": "Italy",
+    "y": 4.55
+  },
+  {
+    "country": "Norway",
+    "y": 2.27
+  },
+  {
+    "country": "Switzerland",
+    "y": 4.55
+  },
+  {
+    "country": "Canada",
+    "y": 2.27
+  }
+]
+        }]
+    });
+});
